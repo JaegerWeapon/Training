@@ -71,7 +71,7 @@ h4 {
 iframe {
 	border: none;
 }
-			
+
 #interface {
 	display: flex;
 	align-items: stretch;
@@ -79,11 +79,13 @@ iframe {
 }
 			
 #interface div {
-	border: 1px green dashed;
+	/* border: 1px green dashed; */
 }
 			
 #header {
 	height: 200px;
+	text-align: right;
+
 }
 			
 #menu {
@@ -91,7 +93,8 @@ iframe {
 }
 			
 #footer {
-	height: 200px;
+	height: 100px;
+	align-content: center;
 }
 			
 #centercolumn {
@@ -126,7 +129,15 @@ iframe {
 }
 
 div#choices {
-	border: 2px red solid;
+	/* border: 2px red solid; */
+}
+
+div#stats {
+	padding-left: 3em;
+}
+
+div#menu {
+	padding-left: 3em;
 }
 
 #figures {
@@ -139,3 +150,20 @@ div#choices {
 .clickable:hover {
 	background-color: rgb(106, 90, 205);
 }
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #0e0e7d rgb(106, 90, 205);
+}
+
+#footer img {
+	vertical-align: middle;
+	position: relative;
+	top: -0.5ex;
+}
+
+#statsTable td {
+	padding: 0 1ex;
+}
+
+

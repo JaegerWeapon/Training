@@ -7,45 +7,119 @@ var engine = {
         document.getElementById("textframe").src = "pages/" + pagename + ".html";
 		var list = document.getElementById("figures");
 		list.innerHTML = "";
-		story.pages[pagename].choices.forEach(element => {
-			console.log(element.text);
+		story.pages[pagename].choices.filter(element => !element.hasOwnProperty("valid") || element.valid(character)).forEach(element => {
 			var li = document.createElement("li");
 			li.innerText = element.text;
 			li.addEventListener("click", function() {element.onselect(); engine.goToPage(element.nextpage);}, false);
 			li.classList.add('clickable');
 			list.appendChild(li);
 		});
+		character.stats.refresh();
+		playSound("sounds/book-close_mjzcqzeu.mp3")
 	}
 }
+
+function playSound(url) {
+	const audio = new Audio(url);
+	audio.play();
+}
+
+var STRENGTH = "strength";
+var REFLEXES = "reflexes";
+var INTELLIGENCE = "intelligence";
+var CHARISMA = "charisma";
+var FENCING = "fencing";
+var MARTIALARTS = "martialarts";
+var HOLYMAGIC = "holymagic";
+var HUNT_RESOURCES = "huntresources";
+var HUNT_SKILLS = "huntskills";
+var MAGIC_TOLERANCE = "magictolerance";
+var NOBILITY_APPROVAL = "nobilityapproval";
+var SINS = "sins";
+var DECAY_POINTS = "decaypoints";
+
+var statNames = [STRENGTH, REFLEXES, INTELLIGENCE, CHARISMA, FENCING, MARTIALARTS, HOLYMAGIC, HUNT_RESOURCES, HUNT_SKILLS, MAGIC_TOLERANCE, NOBILITY_APPROVAL, SINS, DECAY_POINTS];
+
+var defaults = {
+	strength: 0,
+	reflexes: 0,
+	intelligence: 0,
+	charisma: 0,
+	fencing: false,
+	martialarts: false,
+	holymagic: false,
+	huntresources: 0,
+	huntskills: 0,
+	magictolerance: 0,
+	nobilityapproval: 0,
+	sins: 0,
+	decaypoints: 0
+};
+
 var character = {
     stats: {
         reflexes: 0,
         strength: 0,
         intelligence: 0,
         charisma: 0,
+		fencing: false,
+		martialarts: false,
+		holymagic: false,
+		huntresources: 0,
+		huntskills: 0,
+		magictolerance: 0,
+		nobilityapproval: 0,
+		sins: 0,
+		decaypoints: 0,
+		
 		refresh: function() {
-			["reflexes", "strength", "intelligence", "charisma"].forEach(name => {
+			statNames.forEach(name => {
 				document.getElementById(name + "Stat").innerText = this[name];
 			})
 		},
 		setReflexes: function(newValue) {
 			this.reflexes = newValue;
-			this.refresh();
 		},
 		
 		setStrength: function(newValue) {
 			this.strength = newValue;
-			this.refresh();
 		},
 		
 		setIntelligence: function(newValue) {
 			this.intelligence = newValue;
-			this.refresh();
 		},
 		
 		setCharisma: function(newValue) {
 			this.charisma = newValue;
-			this.refresh();
+		},
+		setStats: function(newStats) {
+			statNames.forEach(name => {
+				if (newStats.hasOwnProperty(name))
+					this[name] = newStats[name];
+			});
+		},
+		
+		resetStats: function(newStats) {
+			statNames.forEach(name => {
+				if (newStats.hasOwnProperty(name))
+					this[name] = newStats[name];
+				else 
+					this[name] = defaults[name];
+			});
+		},
+		
+		increase: function(statName) {
+			this[statName]++;
+		},
+		decrease: function(statName) {
+			this[statName]--;
+		},
+		
+		increaseBy: function(statName, x) {
+			this[statName]+=x;
+		},
+		decreaseBy: function(statName, x) {
+			this[statName]-=x;
 		}
 	},
     story: {
@@ -61,25 +135,25 @@ var story = {
 				text: "Скаліченого воїна",
 				nextpage: "backstory1_1",
 				onselect: function () {
-					character.stats.setStrength(1);
+					character.stats.resetStats({strength: 1});
 				}
                 }, {
 				text: "Хитрого пройдисвіта",
 				nextpage: "backstory1_2",
 				onselect: function () {
-					character.stats.setReflexes(1);
+					character.stats.resetStats({reflexes: 1});
 				}
                 }, {
 				text: "Мудру босорку",
 				nextpage: "backstory1_3",
 				onselect: function () {
-					character.stats.setIntelligence(1);
+				character.stats.resetStats({intelligence: 1});
 				}
                 }, {
 				text: "Сліпого кобзаря",
 				nextpage: "backstory1_4",
 				onselect: function () {
-					character.stats.setCharisma(1);
+					character.stats.resetStats({charisma: 1});
 				}
 			}
             ]
@@ -117,25 +191,26 @@ var story = {
 				text: "Полювальником",
 				nextpage: "backstory2_1",
 				onselect: function () {
-					character.stats.setStrength(1);
+				character.stats.increase(REFLEXES);
 				}
+			// ,valid: character => character.stats.strength > 0
                 }, {
 				text: "Гармашем",
 				nextpage: "backstory2_2",
 				onselect: function () {
-					character.stats.setReflexes(1);
+					character.stats.increase(STRENGTH);
 				}
                 }, {
 				text: "Писарем",
 				nextpage: "backstory2_3",
 				onselect: function () {
-					character.stats.setIntelligence(1);
+					character.stats.increase(INTELLIGENCE);
 				}
                 }, {
 				text: "Мандруючим артистом",
 				nextpage: "backstory2_4",
 				onselect: function () {
-					character.stats.setCharisma(1);
+					character.stats.increase(CHARISMA);
 				}
 			}
             ]
