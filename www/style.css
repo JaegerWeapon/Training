@@ -30,7 +30,7 @@ body {
 	margin: 0px;
 	border: 0px;
 	padding: 0px;
-	background-color: rgb(248, 238, 203);
+	background-color: #f8eecb;
 	font-size: x-large;
 }
 
@@ -141,6 +141,33 @@ div#menu {
 }
 
 #figures {
+}
+
+#main_menu { 
+	margin: auto;
+	background-color: #f2eedf;
+	font-size: 35px;
+	padding-top: 1em;
+	padding-right: 3ex;
+	padding-bottom: 6em;
+	padding-left: 3ex;
+	border: 20px solid transparent;
+	border-image: url(css_border-image-3.png) 40 round round;
+}
+
+#menu_container {
+	position: absolute;
+	display: flex;
+	border: 0px none;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	visibility: hidden;
+}
+
+#menu_container.visible {
+	visibility: visible;
 }
 
 .clickable {

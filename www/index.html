@@ -4,13 +4,22 @@
 		<title>Hunters</title>
 		<link rel="icon" type="image/x-icon" href="C:\Users\user\Desktop\Training\www\HunterHat.ico">
 		<script src="engine.js"></script>
+		<script src="interface.js"></script>
 		<link rel="stylesheet" href="style.css">
 		<link rel="stylesheet" href="sitestyle.css">
 	</head>
 	<body id="interface">
+		<div id="menu_container" onclick="menu.close()">
+			<menu id="main_menu">
+				<li>Зберегти</li>
+				<li>Завантажити</li>
+				<li>С початку</li>
+				<li>Досягнення</li>
+			</menu>
+		</div>
 		<div id="leftcolumn">
 			<div id="menu">
-				<p>Меню</p>
+				<span onclick="menu.open()" class="clickable">Меню</span>
 			</div>
 			<div id="footer">
 				<a href="https://www.facebook.com/MaxHalkin" target="_blank"><img src="MedivalFacebookLogo.jpg" height="100px" width="100px"></img>Facebook автора</a>
