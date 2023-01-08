@@ -8,18 +8,21 @@
 		<link rel="stylesheet" href="style.css">
 		<link rel="stylesheet" href="sitestyle.css">
 	</head>
-	<body id="interface">
+	<body id="interface" onload="load()">
 		<div id="menu_container" onclick="menu.close()">
 			<menu id="main_menu">
-				<li>Зберегти</li>
-				<li>Завантажити</li>
-				<li>С початку</li>
+				<li class="clickable" onclick="save()">Зберегти</li>
+				<li class="clickable" onclick="load()">Завантажити</li>
+				<li class="clickable" onclick="restart()">С початку</li>
 				<li>Досягнення</li>
 			</menu>
 		</div>
 		<div id="leftcolumn">
 			<div id="menu">
 				<span onclick="menu.open()" class="clickable">Меню</span>
+			</div>
+			<div id="images">
+				<!--<img src="images/want.jpg">-->
 			</div>
 			<div id="footer">
 				<a href="https://www.facebook.com/MaxHalkin" target="_blank"><img src="MedivalFacebookLogo.jpg" height="100px" width="100px"></img>Facebook автора</a>
@@ -63,6 +66,7 @@
 		</div>
 	</body>
 	<script>
-		engine.goToPage("backstory0");
+		if (load()) {engine.goToPage(character.stats.currentPage);}
+		else engine.goToPage("backstory0");
 	</script>
 </html>

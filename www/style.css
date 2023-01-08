@@ -108,11 +108,21 @@ iframe {
 	display: flex;
 	flex-direction: column;
 	align-content: stretch;
-	width: 25ex;
+	width: 20ex;
+	flex-grow: 2;
 }
 			
 #rightcolumn {
 	flex-grow: 1;
+}
+
+#images {
+	height: 40vmin;
+	max-width: auto;
+	max-height: auto;
+	/*background: url(images/want.jpg);*/
+	margin-bottom: 9em;
+	box-shadow: 0 0 50px 50px #f8eecb inset;
 }
 
 #textframe {

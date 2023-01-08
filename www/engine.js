@@ -5,7 +5,9 @@ var engine = {
 			return;
 		}
 		
-		character.currentPage = pagename;
+		character.stats.currentPage = pagename;
+		
+		document.getElementById("images").style.background="url(images/" + pagename + ".jpg)";
 		
         document.getElementById("textframe").src = "pages/" + pagename + ".html";
 		var list = document.getElementById("figures");
@@ -27,6 +29,39 @@ function playSound(url) {
 	audio.play();
 }
 
+
+var save = function() {
+	localStorage.clear();
+	localStorage.setItem('history', JSON.stringify(character.history));
+	
+	localStorage.setItem('stats', JSON.stringify(character.stats));
+	playSound("sounds/bell.mp3");
+	};
+
+var load = function() {
+	if (localStorage.getItem("stats") === null) {
+		return false;
+	}
+	var loadedStats = JSON.parse(localStorage.getItem("stats"));
+	Object.assign(character.stats, loadedStats);
+	engine.goToPage(character.stats.currentPage);
+	character.history = JSON.parse(localStorage.getItem("history"));
+	return true;
+}
+
+function resetHistory() {
+	localStorage.removeItem("history");
+	character.history = {};
+	}
+
+function restart() {
+		character.stats.resetStats(defaults);
+		resetHistory();
+		save();
+		//character.stats.currentPage = "backstory0";
+		engine.goToPage("backstory0");
+}
+
 var STRENGTH = "strength";
 var REFLEXES = "reflexes";
 var INTELLIGENCE = "intelligence";
@@ -40,8 +75,9 @@ var MAGIC_TOLERANCE = "magictolerance";
 var NOBILITY_APPROVAL = "nobilityapproval";
 var SINS = "sins";
 var DECAY_POINTS = "decaypoints";
+var CURRENT_PAGE = "currentPage";
 
-var statNames = [STRENGTH, REFLEXES, INTELLIGENCE, CHARISMA, FENCING, MARTIALARTS, HOLYMAGIC, HUNT_RESOURCES, HUNT_SKILLS, MAGIC_TOLERANCE, NOBILITY_APPROVAL, SINS, DECAY_POINTS];
+var statNames = [STRENGTH, REFLEXES, INTELLIGENCE, CHARISMA, FENCING, MARTIALARTS, HOLYMAGIC, HUNT_RESOURCES, HUNT_SKILLS, MAGIC_TOLERANCE, NOBILITY_APPROVAL, SINS, DECAY_POINTS, CURRENT_PAGE];
 
 var defaults = {
 	strength: 0,
@@ -56,14 +92,13 @@ var defaults = {
 	magictolerance: 0,
 	nobilityapproval: 0,
 	sins: 0,
-	decaypoints: 0
+	decaypoints: 0,
+	currentPage: "backstory0"
 };
 
 var character = {
 	
 	history: {},
-	
-	currentPage: "",
 	
     stats: {
         reflexes: 0,
@@ -79,10 +114,12 @@ var character = {
 		nobilityapproval: 0,
 		sins: 0,
 		decaypoints: 0,
+		currentPage: "",
 		
 		refresh: function() {
 			statNames.forEach(name => {
-				document.getElementById(name + "Stat").innerText = this[name];
+				var element = document.getElementById(name + "Stat");
+				if (element) {element.innerText = this[name];}
 			})
 		},
 		setReflexes: function(newValue) {
