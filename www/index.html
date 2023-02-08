@@ -7,6 +7,8 @@
 		<script src="interface.js"></script>
 		<link rel="stylesheet" href="style.css">
 		<link rel="stylesheet" href="sitestyle.css">
+		 <meta charset="UTF-8">
+		  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	</head>
 	<body id="interface" onload="load()">
 		<div id="menu_container" onclick="menu.close()">
@@ -22,7 +24,7 @@
 				<span onclick="menu.open()" class="clickable">Меню</span>
 			</div>
 			<div id="images">
-				<!--<img src="images/want.jpg">-->
+				<img id="art" ></img>
 			</div>
 			<div id="footer">
 				<a href="https://www.facebook.com/MaxHalkin" target="_blank"><img src="MedivalFacebookLogo.jpg" height="100px" width="100px"></img>Facebook автора</a>
@@ -46,19 +48,19 @@
 			<div id="stats">
 				<table id="statsTable">
 					<tbody>
-					<tr><td>Сила</td><td><span id="strengthStat"></span></td></tr>
-					<tr><td>Рефлекси</td><td><span id="reflexesStat"></span></td></tr>
-					<tr><td>Інтелект</td><td><span id="intelligenceStat"></span></td></tr>
-					<tr><td>Харизма</td><td><span id="charismaStat"></span></td></tr>
-					<tr><td>Фехтування</td><td><span id="fencingStat"></span></td></tr>
-					<tr><td>Бойові мистецтва</td><td><span id="martialartsStat"></span></td></tr>
-					<tr><td>Свята магія</td><td><span id="holymagicStat"></span></td></tr>
-					<tr><td>Ресурси мисливців</td><td><span id="huntresourcesStat"></span></td></tr>
-					<tr><td>Підготовка мисливців</td><td><span id="huntskillsStat"></span></td></tr>
-					<tr><td>Терпимість до магії</td><td><span id="magictoleranceStat"></span></td></tr>
-					<tr><td>Схвалення шляхтою</td><td><span id="nobilityapprovalStat"></span></td></tr>
-					<tr><td>Гріхи</td><td><span id="sinsStat"></span></td></tr>
-					<tr><td>Розпад</td><td><span id="decaypointsStat"></span></td></tr>
+					<tr class="hidden1"><td>Сила</td><td><span id="strengthStat"></span></td></tr>
+					<tr class="hidden1"><td>Рефлекси</td><td><span id="reflexesStat"></span></td></tr>
+					<tr class="hidden1"><td>Інтелект</td><td><span id="intelligenceStat"></span></td></tr>
+					<tr class="hidden1"><td>Харизма</td><td><span id="charismaStat"></span></td></tr>
+					<tr class="hidden2"><td>Фехтування</td><td><span id="fencingStat"></span></td></tr>
+					<tr class="hidden2"><td>Бойові мистецтва</td><td><span id="martialartsStat"></span></td></tr>
+					<tr class="hidden2"><td>Свята магія</td><td><span id="holymagicStat"></span></td></tr>
+					<tr class="hidden3"><td>Ресурси мисливців</td><td><span id="huntresourcesStat"></span></td></tr>
+					<tr class="hidden3"><td>Підготовка мисливців</td><td><span id="huntskillsStat"></span></td></tr>
+					<tr class="hidden3"><td>Терпимість до магії</td><td><span id="magictoleranceStat"></span></td></tr>
+					<tr class="hidden3"><td>Схвалення шляхтою</td><td><span id="nobilityapprovalStat"></span></td></tr>
+					<tr class="hidden4"><td>Гріхи</td><td><span id="sinsStat"></span></td></tr>
+					<tr class="hidden4"><td>Розпад</td><td><span id="decaypointsStat"></span></td></tr>
 					</tbody>
 					
 				</table>

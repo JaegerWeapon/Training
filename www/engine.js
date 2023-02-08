@@ -7,7 +7,7 @@ var engine = {
 		
 		character.stats.currentPage = pagename;
 		
-		document.getElementById("images").style.background="url(images/" + pagename + ".jpg)";
+		document.getElementById("art").src="images/" + pagename + ".jpg";
 		
         document.getElementById("textframe").src = "pages/" + pagename + ".html";
 		var list = document.getElementById("figures");
@@ -20,9 +20,43 @@ var engine = {
 			list.appendChild(li);
 		});
 		character.stats.refresh();
-		playSound("sounds/book-close_mjzcqzeu.mp3")
+		playSound("sounds/page-flip-" + Math.floor(Math.random() * 7) + ".mp3")
 	}
 }
+
+var showone = document.getElementsByClassName("hidden1");
+var showtwo = document.getElementsByClassName("hidden2");
+var showthree = document.getElementsByClassName("hidden3");
+var showfour = document.getElementsByClassName("hidden4");
+
+function myLoad() {
+	if (localStorage.getItem("showone") !== null) {
+	for(var i = 0; i < showone.length; i++)
+						{
+    					showone[i].classList.add('visible');
+						}
+						}
+	if (localStorage.getItem("showtwo") !== null) {
+	for(var i = 0; i < showtwo.length; i++)
+						{
+    					showtwo[i].classList.add('visible');
+						}
+						}
+	if (localStorage.getItem("showthree") !== null) {
+	for(var i = 0; i < showthree.length; i++)
+						{
+    					showthree[i].classList.add('visible');
+						}
+						}
+	if (localStorage.getItem("showfour") !== null) {
+	for(var i = 0; i < showfour.length; i++)
+						{
+    					showfour[i].classList.add('visible');
+						}
+						}
+}
+
+window.addEventListener("load", myLoad);
 
 function playSound(url) {
 	const audio = new Audio(url);
@@ -35,11 +69,17 @@ var save = function() {
 	localStorage.setItem('history', JSON.stringify(character.history));
 	
 	localStorage.setItem('stats', JSON.stringify(character.stats));
+	
+	localStorage.setItem('showone', JSON.stringify(showone));
+	localStorage.setItem('showtwo', JSON.stringify(showtwo));
+	localStorage.setItem('showthree', JSON.stringify(showthree));
+	localStorage.setItem('showfour', JSON.stringify(showfour));
+	
 	playSound("sounds/bell.mp3");
 	};
 
 var load = function() {
-	if (localStorage.getItem("stats") === null) {
+	if (localStorage.getItem('stats') === null) {
 		return false;
 	}
 	var loadedStats = JSON.parse(localStorage.getItem("stats"));
@@ -184,24 +224,44 @@ var story = {
 				nextpage: "backstory1_1",
 				onselect: function () {
 					character.stats.resetStats({strength: 1});
+					
+					for(var i = 0; i < showone.length; i++)
+						{
+    					showone[i].classList.add('visible');
+						}
 				}
                 }, {
 				text: "Хитрого пройдисвіта",
 				nextpage: "backstory1_2",
 				onselect: function () {
 					character.stats.resetStats({reflexes: 1});
+					
+					for(var i = 0; i < showone.length; i++)
+						{
+    					showone[i].classList.add('visible');
+						}
 				}
                 }, {
 				text: "Мудру босорку",
 				nextpage: "backstory1_3",
 				onselect: function () {
 				character.stats.resetStats({intelligence: 1});
+					
+					for(var i = 0; i < showone.length; i++)
+						{
+    					showone[i].classList.add('visible');
+						}
 				}
                 }, {
 				text: "Сліпого кобзаря",
 				nextpage: "backstory1_4",
 				onselect: function () {
 					character.stats.resetStats({charisma: 1});
+					
+					for(var i = 0; i < showone.length; i++)
+						{
+    					showone[i].classList.add('visible');
+						}
 				}
 			}
             ]
@@ -353,24 +413,40 @@ var story = {
 				nextpage: "backstory4_1",
 				onselect: function () {
 					character.stats.skillOn(FENCING);
+						for(var i = 0; i < showtwo.length; i++)
+						{
+    					showtwo[i].classList.add('visible');
+						}
 				}
                 }, {
 				text: "Мистецтву бою",
 				nextpage: "backstory4_2",
 				onselect: function () {
 					character.stats.skillOn(MARTIALARTS);
+					for(var i = 0; i < showtwo.length; i++)
+						{
+    					showtwo[i].classList.add('visible');
+						}
 				}
                 }, {
 				text: "Святому писанню",
 				nextpage: "backstory4_3",
 				onselect: function () {
 					character.stats.skillOn(HOLYMAGIC);
+					for(var i = 0; i < showtwo.length; i++)
+						{
+    					showtwo[i].classList.add('visible');
+						}
 				}
                 }, {
 				text: "Красному слову",
 				nextpage: "backstory4_4",
 				onselect: function () {
 					character.stats.increaseBy(CHARISMA, 2);
+					for(var i = 0; i < showtwo.length; i++)
+						{
+    					showtwo[i].classList.add('visible');
+						}
 				}
 			}
             ]
@@ -470,6 +546,11 @@ var story = {
 				valid: character => character.stats.holymagic,
 				onselect: function () {
 					character.stats.increaseBy(MAGIC_TOLERANCE, 10);
+					
+						for(var i = 0; i < showthree.length; i++)
+						{
+    					showthree[i].classList.add('visible');
+						}
 				}
                 }, {
 				text: "Тримати деякий час під арештом",
@@ -477,12 +558,22 @@ var story = {
 				onselect: function () {
 					character.stats.increaseBy(MAGIC_TOLERANCE, 10);
 					character.stats.decreaseBy(NOBILITY_APPROVAL, 10);
+					
+						for(var i = 0; i < showthree.length; i++)
+						{
+    					showthree[i].classList.add('visible');
+						}	
 				}
                 }, {
 				text: "Відпустити",
 				nextpage: "ChapterOne6_3",
 				onselect: function () {
 					character.stats.decreaseBy(MAGIC_TOLERANCE, 10);
+					
+						for(var i = 0; i < showthree.length; i++)
+						{
+    					showthree[i].classList.add('visible');
+						}
 				}
 			}, 
             ]
@@ -1314,21 +1405,36 @@ var story = {
 			choices: [{
 				text: "Продовжити",
 				nextpage: "ChapterXFourOne25",
-				onselect: function () {}
+				onselect: function () {
+					for(var i = 0; i < showfour.length; i++)
+						{
+    					showfour[i].classList.add('visible');
+						}
+				}
 			}]
 		},
 		ChapterUThree23_2: {
 			choices: [{
 				text: "Продовжити",
 				nextpage: "ChapterXFourTwo25",
-				onselect: function () {}
+				onselect: function () {
+					for(var i = 0; i < showfour.length; i++)
+						{
+    					showfour[i].classList.add('visible');
+						}
+				}
 			}]
 		},
 		ChapterUThree23_3: {
 			choices: [{
 				text: "Продовжити",
 				nextpage: "ChapterXFourUThree25",
-				onselect: function () {}
+				onselect: function () {
+					for(var i = 0; i < showfour.length; i++)
+						{
+    					showfour[i].classList.add('visible');
+						}
+				}
 			}]
 		},
 		// ______________________________________________________________________________________________________________________________
