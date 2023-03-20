@@ -9,3 +9,7 @@ html {
   scrollbar-width: thin;
   scrollbar-color: #0e0e7d rgb(106, 90, 205);
 }
+
+.collapsed {
+	display: none;
+}

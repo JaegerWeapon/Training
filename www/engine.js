@@ -7,8 +7,9 @@ var engine = {
 		
 		character.stats.currentPage = pagename;
 		
-		document.getElementById("art").src="images/" + pagename + ".jpg";
-		
+		document.getElementById("art").style.display = "";
+		document.getElementById("art").setAttribute("xlink:href", "images/" + pagename + ".jpg");
+				
         document.getElementById("textframe").src = "pages/" + pagename + ".html";
 		var list = document.getElementById("figures");
 		list.innerHTML = "";
@@ -80,8 +81,10 @@ var save = function() {
 
 var load = function() {
 	if (localStorage.getItem('stats') === null) {
+		welcomesign.open();
 		return false;
 	}
+	
 	var loadedStats = JSON.parse(localStorage.getItem("stats"));
 	Object.assign(character.stats, loadedStats);
 	engine.goToPage(character.stats.currentPage);
@@ -100,6 +103,11 @@ function restart() {
 		save();
 		//character.stats.currentPage = "backstory0";
 		engine.goToPage("backstory0");
+}
+
+var welcomesign = {
+	open: function() {document.getElementById("welcome_container").classList.add("visible");},
+	close: function() {document.getElementById("welcome_container").classList.remove("visible");}
 }
 
 var STRENGTH = "strength";
@@ -999,25 +1007,25 @@ var story = {
 		ChapterTwo13_1: {
 			choices: [{
 				text: "Продовжити",
-				nextpage: "ChapterTwo13",
+				nextpage: "ChapterTwo14",
 				onselect: function () {}
 			}]
 		},
 		ChapterTwo13_2: {
 			choices: [{
 				text: "Продовжити",
-				nextpage: "ChapterTwo13",
+				nextpage: "ChapterTwo14",
 				onselect: function () {}
 			}]
 		},
 		ChapterTwo13_3: {
 			choices: [{
 				text: "Продовжити",
-				nextpage: "ChapterTwo13",
+				nextpage: "ChapterTwo14",
 				onselect: function () {}
 			}]
 		},
-		ChapterTwo13: {
+		ChapterTwo14: {
             choices: [{
 				text: "Вибору нема",
 				nextpage: "ChapterTwo14_1",

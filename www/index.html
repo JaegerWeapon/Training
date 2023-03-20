@@ -2,15 +2,19 @@
 <html>
 	<head>
 		<title>Hunters</title>
-		<link rel="icon" type="image/x-icon" href="C:\Users\user\Desktop\Training\www\HunterHat.ico">
+		<link rel="icon" type="image/x-icon" href="HunterHat.ico">
 		<script src="engine.js"></script>
-		<script src="interface.js"></script>
+		<script src="interface.js" type="text/javascript"></script>
+		<script src="changeable.js"></script>
+		<script type="text/javascript">
+			window.onload = interfaceFunctions.onFirstPageLoad;			
+		</script>
 		<link rel="stylesheet" href="style.css">
 		<link rel="stylesheet" href="sitestyle.css">
 		 <meta charset="UTF-8">
 		  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	</head>
-	<body id="interface" onload="load()">
+	<body id="interface">
 		<div id="menu_container" onclick="menu.close()">
 			<menu id="main_menu">
 				<li class="clickable" onclick="save()">Зберегти</li>
@@ -19,12 +23,37 @@
 				<li>Досягнення</li>
 			</menu>
 		</div>
+		
+		<div id="welcome_container">
+			<div id="welcome_sign">
+			<p id="welcome_text">
+				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur pharetra ipsum vitae pharetra posuere. Nunc sed odio lacinia est rutrum bibendum eget ut lectus. Nulla elementum tellus ut tempor maximus. Mauris sollicitudin ligula ante. Etiam at arcu vitae eros aliquam condimentum. Cras quis sem ullamcorper, hendrerit velit ac, rutrum metus. Cras ac tristique nisl, nec luctus quam. Duis quis efficitur felis. Sed commodo non mauris et gravida. Nulla eget diam eget nibh tincidunt ultricies. Maecenas tristique enim tristique scelerisque venenatis. Aliquam volutpat, sem non dictum consequat, eros diam porta libero, a faucibus ex orci in felis. Suspendisse lobortis leo mauris, sit amet mollis neque varius eget. Pellentesque efficitur nulla quis diam lacinia, vitae aliquam neque fringilla.  
+			</p>
+			<p id="start_button" class="clickable" onclick="welcomesign.close()">Розпочати!</p>
+			</div>
+		</div>
+		
 		<div id="leftcolumn">
 			<div id="menu">
 				<span onclick="menu.open()" class="clickable">Меню</span>
 			</div>
 			<div id="images">
-				<img id="art" ></img>
+			<svg viewBox="0 0 10 10">	
+		<defs>
+    <radialGradient id="fadeGrad" r="50%">
+      <stop offset="0" stop-color="white" stop-opacity="0"/>
+      <stop offset="0" stop-color="white" stop-opacity="1"/>
+	  <stop offset="0.8" stop-color="white" stop-opacity="1"/>
+      <stop offset="1" stop-color="white" stop-opacity="0"/>
+    </radialGradient>
+
+    <mask id="fade" maskContentUnits="objectBoundingBox">
+      <rect width="1" height="1" fill="url(#fadeGrad)"/>
+    </mask>
+  </defs>
+	
+  	<image id="art" xlink:href="" mask="url(#fade)" onerror="this.style.display = 'none'"/>
+</svg>
 			</div>
 			<div id="footer">
 				<a href="https://www.facebook.com/MaxHalkin" target="_blank"><img src="MedivalFacebookLogo.jpg" height="100px" width="100px"></img>Facebook автора</a>
@@ -33,7 +62,7 @@
 		<div id="centercolumn">
 			<h4 align="center" id="mainheader">╭─── ❆ ───╮</h4>
 			<div id="maintext">
-				<iframe src="pages/empty.html" id="textframe"></iframe>
+				<iframe src="pages/empty.html" id="textframe" ></iframe>
 			</div>
 			<div id="choices">
 				<ol id="figures">
@@ -68,7 +97,11 @@
 		</div>
 	</body>
 	<script>
-		if (load()) {engine.goToPage(character.stats.currentPage);}
+		/*if (load()) {engine.goToPage(character.stats.currentPage);}
 		else engine.goToPage("backstory0");
+		
+		function processPage() {
+			processVisibility(document.getElementById('textframe').contentWindow.document);
+		}*/
 	</script>
 </html>
