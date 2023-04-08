@@ -81,6 +81,7 @@ var save = function() {
 
 var load = function() {
 	if (localStorage.getItem('stats') === null) {
+		engine.goToPage("backstory0");
 		welcomesign.open();
 		return false;
 	}
