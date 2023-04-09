@@ -1358,7 +1358,7 @@ var story = {
 					
 				}
 			}, {
-				text: "Ігнорувати",
+				text: "Ви будете просити допомоги у шляхти",
 				nextpage: "ChapterUThree22_2",
 				onselect: function () {
 					character.stats.increase(SINS);
@@ -1413,7 +1413,7 @@ var story = {
 		ChapterUThree23_1: {
 			choices: [{
 				text: "Продовжити",
-				nextpage: "ChapterXFourOne25",
+				nextpage: "ChapterXFourOne24",
 				onselect: function () {
 					for(var i = 0; i < showfour.length; i++)
 						{
@@ -1425,7 +1425,7 @@ var story = {
 		ChapterUThree23_2: {
 			choices: [{
 				text: "Продовжити",
-				nextpage: "ChapterXFourTwo25",
+				nextpage: "ChapterXFourTwo24",
 				onselect: function () {
 					for(var i = 0; i < showfour.length; i++)
 						{
@@ -1437,7 +1437,7 @@ var story = {
 		ChapterUThree23_3: {
 			choices: [{
 				text: "Продовжити",
-				nextpage: "ChapterXFourUThree25",
+				nextpage: "ChapterXFourUThree24",
 				onselect: function () {
 					for(var i = 0; i < showfour.length; i++)
 						{
@@ -1447,34 +1447,87 @@ var story = {
 			}]
 		},
 		// ______________________________________________________________________________________________________________________________
-		ChapterXFourOne25: {
+		ChapterXFourOne24: {
             choices: [{
 				text: "Заборонили їй чаклувати",
-				nextpage: "ChapterXFourOne25_1",
+				nextpage: "ChapterXFourOne24_1",
 				valid: function () {return character.history.ChapterOne8 == 0;},
 				onselect: function () {
 					
 				}
                 }, {
 				text: "Ігнорували",
-				nextpage: "ChapterXFourOne25_2",
+				nextpage: "ChapterXFourOne24_2",
 				valid: function () {return character.history.ChapterOne8 == 1;},
 				onselect: function () {
 					
 				}
 				}, {
 				text: "Відправили до академії",
-				nextpage: "ChapterXFourOne25_3",
+				nextpage: "ChapterXFourOne24_3",
 				valid: function () {return character.history.ChapterOne8 == 2;},
 				onselect: function () {
 					
 				}
 				}, {
 				text: "Видали ліцензію",
-				nextpage: "ChapterXFourOne25_4",
+				nextpage: "ChapterXFourOne24_4",
 				valid: function () {return character.history.ChapterOne8 == 3;},
 				onselect: function () {
 					
+				}
+				}
+            ]
+		},
+		ChapterXFourOne24_1: {
+			choices: [{
+				text: "Продовжити",
+				nextpage: "ChapterXFourOne25",
+				onselect: function () {}
+			}]
+		},
+		ChapterXFourOne24_2: {
+			choices: [{
+				text: "Продовжити",
+				nextpage: "ChapterXFourOne25",
+				onselect: function () {}
+			}]
+		},
+		ChapterXFourOne24_3: {
+			choices: [{
+				text: "Продовжити",
+				nextpage: "ChapterXFourOne25",
+				onselect: function () {}
+			}]
+		},
+		ChapterXFourOne24_4: {
+			choices: [{
+				text: "Продовжити",
+				nextpage: "ChapterXFourOne25",
+				onselect: function () {}
+			}]
+		},
+		ChapterXFourOne25: {
+            choices: [{
+				text: "Зв’язками у злочинному світі",
+				nextpage: "ChapterXFourOne25_1",
+				valid: function () {return character.history.ChapterUThree16 == 0;},
+				onselect: function () {
+					
+				}
+                }, {
+				text: "Ви розширювалися цілком за законом",
+				nextpage: "ChapterXFourOne25_2",
+				valid: function () {return character.history.ChapterUThree16 == 1;},
+				onselect: function () {
+					
+				}
+				}, {
+				text: "Зв’язками зі шляхтою",
+				nextpage: "ChapterXFourOne25_3",
+				valid: function () {return character.history.ChapterUThree16 == 2;},
+				onselect: function () {
+					character.stats.increase(SINS);
 				}
 				}
             ]
@@ -1500,43 +1553,29 @@ var story = {
 				onselect: function () {}
 			}]
 		},
-		ChapterXFourOne25_4: {
-			choices: [{
-				text: "Продовжити",
-				nextpage: "ChapterXFourOne26",
-				onselect: function () {}
-			}]
-		},
 		ChapterXFourOne26: {
             choices: [{
-				text: "Зв’язками у злочинному світі",
+				text: "Ви також співпрацювали з демонами",
 				nextpage: "ChapterXFourOne26_1",
-				valid: function () {return character.history.ChapterUThree16 == 0;},
+				valid: function () {return (character.history.ChapterUThree20 == 0) || (character.history.ChapterUThree21 == 0);},
 				onselect: function () {
 					
 				}
                 }, {
-				text: "Агресивною поведінкою",
+				text: "Ви ніколи не співпрацювали з демонами.",
 				nextpage: "ChapterXFourOne26_2",
-				valid: function () {return (character.history.ChapterUThree16 == 1) && character.stats.magictolerance < 0;},
+				valid: function () {return (character.history.ChapterUThree20 == 1) && (character.history.ChapterUThree21 == 1);},
 				onselect: function () {
 					
 				}
-				}, {
-				text: "Агресивною поведінкою",
+			}, {
+				text: "Ви співпрацювали з демонами, але у благо закону",
 				nextpage: "ChapterXFourOne26_3",
-				valid: function () {return (character.history.ChapterUThree16 == 1) && character.stats.magictolerance >= 0;},
-				onselect: function () {
-					character.stats.increase(SINS);
-				}
-				}, {
-				text: "Зв’язками зі шляхтою",
-				nextpage: "ChapterXFourOne26_4",
-				valid: function () {return character.history.ChapterUThree16 == 2;},
+				valid: function () {return ((character.history.ChapterUThree20 == 0) || (character.history.ChapterUThree21 == 0)) && (character.stats.charisma >= 4);},
 				onselect: function () {
 					
 				}
-				}
+			}
             ]
 		},
 		ChapterXFourOne26_1: {
@@ -1560,32 +1599,34 @@ var story = {
 				onselect: function () {}
 			}]
 		},
-		ChapterXFourOne26_4: {
-			choices: [{
-				text: "Продовжити",
-				nextpage: "ChapterXFourOne27",
-				onselect: function () {}
-			}]
-		},
 		ChapterXFourOne27: {
             choices: [{
-				text: "Так",
+				text: "Ви хотіли покращити ставлення до магії у суспільстві",
 				nextpage: "ChapterXFourOne27_1",
-				valid: function () {return (character.history.ChapterUThree20 == 0) || (character.history.ChapterUThree21 == 0);},
 				onselect: function () {
 					
 				}
                 }, {
-				text: "Ні",
+				text: "Ви хотіли заборонити магію",
 				nextpage: "ChapterXFourOne27_2",
-				valid: function () {return (character.history.ChapterUThree20 == 1) && (character.history.ChapterUThree21 == 1);},
+				onselect: function () {
+					
+				}
+				}, {
+				text: "Вас завжди вело відчуття справедливості",
+				nextpage: "ChapterXFourOne27_3",
 				onselect: function () {
 					
 				}
 			}, {
-				text: "Трохи",
-				nextpage: "ChapterXFourOne27_3",
-				valid: function () {return ((character.history.ChapterUThree20 == 0) || (character.history.ChapterUThree21 == 0)) && (character.stats.charisma >= 4);},
+				text: "Ви лише виконували волю своєї королеви",
+				nextpage: "ChapterXFourOne27_4",
+				onselect: function () {
+					
+				}
+			}, {
+				text: "Ви хотіли влади та визнання",
+				nextpage: "ChapterXFourOne27_5",
 				onselect: function () {
 					
 				}
@@ -1613,24 +1654,31 @@ var story = {
 				onselect: function () {}
 			}]
 		},
+		ChapterXFourOne27_4: {
+			choices: [{
+				text: "Продовжити",
+				nextpage: "ChapterXFourOne28",
+				onselect: function () {}
+			}]
+		},
+		ChapterXFourOne27_5: {
+			choices: [{
+				text: "Продовжити",
+				nextpage: "ChapterXFourOne28",
+				onselect: function () {}
+			}]
+		},
 		ChapterXFourOne28: {
             choices: [{
-				text: "Так, ваші люди викрили головного чаклуна",
+				text: "Так. Ви знаєте що потрібно говорити щоб захистити себе",
 				nextpage: "ChapterXFourOne28_1",
-				valid: function () {return character.history.ChapterUThree22 == 0},
+				valid: character => character.stats.charisma > 4,
 				onselect: function () {
-					
+					character.stats.decrease(SINS);
 				}
                 }, {
-				text: "Так, ваш 'довірений агент' викрив чаклуна",
+				text: "Ні, вам нічого додати",
 				nextpage: "ChapterXFourOne28_2",
-				valid: function () {return character.history.ChapterUThree22 == 1},
-				onselect: function () {
-					
-				}
-				}, {
-				text: "Вам не вдалося це з'ясувати",
-				nextpage: "ChapterXFourOne28_3",
 				onselect: function () {
 					
 				}
@@ -1638,131 +1686,95 @@ var story = {
             ]
 		},
 		ChapterXFourOne28_1: {
-			choices: [{
-				text: "Продовжити",
+            choices: [{
+				text: "До результату суду(Бездоганний суд)",
 				nextpage: "ChapterXFourOne29",
-				onselect: function () {}
-			}]
+				valid: character => character.stats.sins == 0,
+				onselect: function () {
+					
+				}
+                }, {
+				text: "До результату суду(Успішний суд)",
+				nextpage: "ChapterXFourOne30",
+				valid: character => character.stats.sins <= 2,
+				onselect: function () {
+					
+				}
+				}, {
+				text: "До результату суду(Провальний суд)",
+				nextpage: "ChapterXFourOne31",
+				valid:character =>  character.stats.sins > 2,
+				onselect: function () {
+					
+				}
+				}
+            ]
 		},
 		ChapterXFourOne28_2: {
-			choices: [{
-				text: "Продовжити",
+            choices: [{
+				text: "До результату суду(Бездоганний суд)",
 				nextpage: "ChapterXFourOne29",
-				onselect: function () {}
-			}]
-		},
-		ChapterXFourOne28_3: {
-			choices: [{
-				text: "Продовжити",
-				nextpage: "ChapterXFourOne29",
-				onselect: function () {}
-			}]
+				valid: character => character.stats.sins == 0,
+				onselect: function () {
+					
+				}
+                }, {
+				text: "До результату суду(Успішний суд)",
+				nextpage: "ChapterXFourOne30",
+				valid: character => character.stats.sins <= 2,
+				onselect: function () {
+					
+				}
+				}, {
+				text: "До результату суду(Провальний суд)",
+				nextpage: "ChapterXFourOne31",
+				valid: character => character.stats.sins > 2,
+				onselect: function () {
+					
+				}
+				}
+            ]
 		},
 		ChapterXFourOne29: {
             choices: [{
-				text: "Впевнити усіх присутніх у своїх добрих намірах",
-				nextpage: "ChapterXFourOne29_1",
-				valid: character.stats.charisma > 4,
+				text: "До питання чаклунів",
+				nextpage: "ChapterXFourOne32",
 				onselect: function () {
-					character.stats.decrease(SINS);
+					if (character.stats.huntresources < 0) {character.stats.increase(DECAY_POINTS)}
+					if (character.stats.huntskills < 0) {character.stats.increase(DECAY_POINTS)}
+					if (character.stats.nobilityapproval < 0) {character.stats.increase(DECAY_POINTS)}
 				}
-                }, {
-				text: "Ні, ви не знаходите слів",
-				nextpage: "ChapterXFourOne29_2",
-				onselect: function () {
-					
-				}
-			}
-            ]
-		},
-		ChapterXFourOne29_1: {
-            choices: [{
-				text: "До результату суду(Успішний суд)",
-				nextpage: "ChapterXFourOne30",
-				valid: character.stats.sins <= 2,
-				onselect: function () {
-					
-				}
-                }, {
-				text: "До результату суду(Ув'язнення)",
-				nextpage: "ChapterXFourOne31",
-				valid: character.stats.sins > 2,
-				onselect: function () {
-					
-				}
-			}
-            ]
-		},
-		ChapterXFourOne29_2: {
-            choices: [{
-				text: "До результату суду(Успішний суд)",
-				nextpage: "ChapterXFourOne30",
-				valid: character.stats.sins <= 2,
-				onselect: function () {
-					
-				}
-                }, {
-				text: "До результату суду(Ув'язнення)",
-				nextpage: "ChapterXFourOne31",
-				valid: character.stats.sins > 2,
-				onselect: function () {
-					
-				}
-			}
+                }
             ]
 		},
 		ChapterXFourOne30: {
             choices: [{
-				text: "До питання чаклунів(Терпимість)",
+				text: "До питання чаклунів",
 				nextpage: "ChapterXFourOne32",
-				valid: character.stats.magictolerance > 0,
 				onselect: function () {
 					if (character.stats.huntresources < 0) {character.stats.increase(DECAY_POINTS)}
 					if (character.stats.huntskills < 0) {character.stats.increase(DECAY_POINTS)}
 					if (character.stats.nobilityapproval < 0) {character.stats.increase(DECAY_POINTS)}
 				}
-                }, {
-				text: "До питання чаклунів(Гоніння)",
-				nextpage: "ChapterXFourOne33",
-				valid: character.stats.magictolerance < 0,
-				onselect: function () {
-					
-				}
-			}
+                }
             ]
 		},
 		ChapterXFourOne31: {
             choices: [{
-				text: "До питання чаклунів(Терпимість)",
+				text: "До питання чаклунів",
 				nextpage: "ChapterXFourOne32",
-				valid: character.stats.magictolerance > 0,
 				onselect: function () {
 					if (character.stats.huntresources < 0) {character.stats.increase(DECAY_POINTS)}
 					if (character.stats.huntskills < 0) {character.stats.increase(DECAY_POINTS)}
 					if (character.stats.nobilityapproval < 0) {character.stats.increase(DECAY_POINTS)}
 				}
-                }, {
-				text: "До питання чаклунів(Гоніння)",
-				nextpage: "ChapterXFourOne33",
-				valid: character.stats.magictolerance < 0,
-				onselect: function () {
-					
-				}
-			}
+                }
             ]
 		},
 		ChapterXFourOne32: {
             choices: [{
-				text: "До долі мисливців(Стражі закону)",
-				nextpage: "ChapterXFourOne34",
-				valid: character.stats.decaypoints <= 1,
-				onselect: function () {
-					
-				}
-                }, {
-				text: "До долі мисливців(Розпад)",
-				nextpage: "ChapterXFourOne35",
-				valid: character.stats.decaypoints >= 2,
+				text: "До долі мисливців",
+				nextpage: "ChapterXFourOne33",
 				onselect: function () {
 					
 				}
@@ -1770,30 +1782,42 @@ var story = {
             ]
 		},
 		ChapterXFourOne33: {
+			choices: [{
+				text: "Продовжити",
+				nextpage: "The_End_100",
+				valid: function () {return !((character.history.ChapterUThree20 == 0) && (character.history.ChapterUThree21 == 0) && (character.history.ChapterXFourOne30 == 0));},
+				onselect: function () {}
+			}, {
+				text: "Продовжити(Як бути з Кліо)",
+				valid: function () {return (character.history.ChapterUThree20 == 0) && (character.history.ChapterUThree21 == 0) && (character.history.ChapterXFourOne30 == 0);},
+				nextpage: "ChapterXFourOne34",
+				onselect: function () {}
+			}]
+		},
+		ChapterXFourOne34: {
             choices: [{
-				text: "До долі мисливців(Палачі)",
-				nextpage: "ChapterXFourOne36",
+				text: "Ви будите разом попри все",
+				nextpage: "ChapterXFourOne34_1",
 				onselect: function () {
 					
 				}
-			}
+				}, {
+				text: "Ви не можете бути разом",
+				nextpage: "ChapterXFourOne34_2",
+				onselect: function () {
+					
+				}
+				}
             ]
 		},
-		ChapterXFourOne34: {
+		ChapterXFourOne34_1: {
 			choices: [{
 				text: "Продовжити",
 				nextpage: "The_End_100",
 				onselect: function () {}
 			}]
 		},
-		ChapterXFourOne35: {
-			choices: [{
-				text: "Продовжити",
-				nextpage: "The_End_100",
-				onselect: function () {}
-			}]
-		},
-		ChapterXFourOne36: {
+		ChapterXFourOne34_2: {
 			choices: [{
 				text: "Продовжити",
 				nextpage: "The_End_100",
@@ -1801,347 +1825,167 @@ var story = {
 			}]
 		},
 		//______________________________________________________________________________________________________________________________
-		ChapterXFourTwo25: {
+		ChapterXFourTwo24: {
             choices: [{
-				text: "Так, ви купували артефакти зі сходу",
-				nextpage: "ChapterXFourTwo25_1",
-				valid: function () {return character.history.ChapterUThree17 == 2},
+				text: "Ви кидаєтесь на ворога з шаблею",
+				nextpage: "ChapterXFourTwo24_1",
+				valid: function () {return character.history.backstory4 == 0},
 				onselect: function () {
 					
 				}
                 }, {
-				text: "Ви будете шукати інший план",
-				nextpage: "ChapterXFourTwo25_2",
+				text: "Ви кидаєтесь на ворога з палицею",
+				nextpage: "ChapterXFourTwo24_2",
+				valid: function () {return character.history.backstory4 == 1},
+				onselect: function () {
+					
+				}
+			}, {
+				text: "Ви сліпете ворога святим сяйвом",
+				nextpage: "ChapterXFourTwo24_3",
+				valid: function () {return character.history.backstory4 == 2},
+				onselect: function () {
+					
+				}
+                }, {
+				text: "Ви не можете нічого зробити",
+				nextpage: "ChapterXFourTwo24_4",
 				onselect: function () {
 					
 				}
 			}
             ]
+		},
+		ChapterXFourTwo24_1: {
+			choices: [{
+				text: "Продовжити",
+				nextpage: "ChapterXFourTwo25",
+				onselect: function () {}
+			}]
+		},
+		ChapterXFourTwo24_2: {
+			choices: [{
+				text: "Продовжити",
+				nextpage: "ChapterXFourTwo25",
+				onselect: function () {}
+			}]
+		},
+		ChapterXFourTwo24_3: {
+			choices: [{
+				text: "Продовжити",
+				nextpage: "ChapterXFourTwo25",
+				onselect: function () {}
+			}]
+		},
+		ChapterXFourTwo24_4: {
+			choices: [{
+				text: "То це був не філактерій…",
+				nextpage: "ChapterXFourTwo24_4_1",
+				onselect: function () {}
+			}, {
+				text: "Вітаю… Ти все ж переміг…",
+				nextpage: "ChapterXFourTwo24_4_2",
+				onselect: function () {}
+			}, {
+				text: "Змилуйся над рештою мисливців… Вони не причетні…",
+				nextpage: "ChapterXFourTwo24_4_3",
+				onselect: function () {}
+			}, {
+				text: "Помилуй, будь ласка…",
+				nextpage: "ChapterXFourTwo24_4_4",
+				onselect: function () {}
+			}, {
+				text: "Горіти тобі у пеклі…",
+				nextpage: "ChapterXFourTwo24_4_5",
+				onselect: function () {}
+			},]
+		},
+		ChapterXFourTwo24_4_1: {
+			choices: [{
+				text: "Продовжити",
+				nextpage: "The_End_100",
+				onselect: function () {}
+			}]
+		},
+		ChapterXFourTwo24_4_2: {
+			choices: [{
+				text: "Продовжити",
+				nextpage: "The_End_100",
+				onselect: function () {}
+			}]
+		},
+		ChapterXFourTwo24_4_3: {
+			choices: [{
+				text: "Продовжити",
+				nextpage: "The_End_100",
+				onselect: function () {}
+			}]
+		},
+		ChapterXFourTwo24_4_4: {
+			choices: [{
+				text: "Продовжити",
+				nextpage: "The_End_100",
+				onselect: function () {}
+			}]
+		},
+		ChapterXFourTwo24_4_5: {
+			choices: [{
+				text: "Продовжити",
+				nextpage: "The_End_100",
+				onselect: function () {}
+			}]
+		},
+		ChapterXFourTwo25: {
+           choices: [{
+				text: "Продовжити",
+				nextpage: "ChapterXFourTwo25_1",
+				onselect: function () {}
+			}]
 		},
 		ChapterXFourTwo25_1: {
 			choices: [{
 				text: "Продовжити",
-				nextpage: "ChapterXFourTwo25_3_0",
-				onselect: function () {}
-			}]
-		},
-		ChapterXFourTwo25_2: {
-			choices: [{
-				text: "Продовжити",
-				nextpage: "ChapterXFourTwo26",
-				onselect: function () {}
-			}]
-		},
-		ChapterXFourTwo25_3_0: {
-            choices: [{
-				text: "Зробити відчайдушний випад",
-				nextpage: "ChapterXFourTwo25_3_1",
-				valid: character => (character.stats.fencing) && (character.stats.huntskills >= 30),
-				onselect: function () {
-					
-				}
-                }, {
-				text: "Зробити відчайдушний прийом",
-				nextpage: "ChapterXFourTwo25_3_2",
-				valid: character => (character.stats.martialarts) && (character.stats.huntskills >= 30),
-				onselect: function () {
-					
-				}
-				}, {
-				text: "Промовити відчайдушну молитву",
-				nextpage: "ChapterXFourTwo25_3_3",
-				valid: character => (character.stats.holymagic) && (character.stats.huntskills >= 30),
-				onselect: function () {
-					
-				}
-				}, {
-				text: "У вас немає ничого окрім відчаю",
-				nextpage: "ChapterXFourTwo25_3_4",
-				onselect: function () {
-					
-				}
-				}
-            ]
-		},
-		ChapterXFourTwo25_3_1: {
-			choices: [{
-				text: "До долі мисливців(Залізна рука)",
-				nextpage: "ChapterXFourTwo25_4",
-				onselect: function () {}
-			}]
-		},
-		ChapterXFourTwo25_3_2: {
-			choices: [{
-				text: "До долі мисливців(Залізна рука)",
-				nextpage: "ChapterXFourTwo25_4",
-				onselect: function () {}
-			}]
-		},
-		ChapterXFourTwo25_3_3: {
-			choices: [{
-				text: "До долі мисливців(Залізна рука)",
-				nextpage: "ChapterXFourTwo25_4",
-				onselect: function () {}
-			}]
-		},
-		ChapterXFourTwo25_3_4: {
-			choices: [{
-				text: "Продовжити",
-				nextpage: "The_End_100",
-				onselect: function () {}
-			}]
-		},
-		ChapterXFourTwo26: {
-            choices: [{
-				text: "Так, ви робили агресивну агентурну працю",
-				nextpage: "ChapterXFourTwo26_1",
-				valid: function () {return character.history.ChapterUThree16 == 0},
-				onselect: function () {
-					
-				}
-                }, {
-				text: "Ви будете шукати інший план",
-				nextpage: "ChapterXFourTwo26_2",
-				onselect: function () {
-					
-				}
-			}
-            ]
-		},
-		ChapterXFourTwo26_1: {
-			choices: [{
-				text: "Продовжити",
-				nextpage: "ChapterXFourTwo26_3_0",
-				onselect: function () {}
-			}]
-		},
-		ChapterXFourTwo26_2: {
-			choices: [{
-				text: "Продовжити",
-				nextpage: "ChapterXFourTwo26",
-				onselect: function () {}
-			}]
-		},
-		ChapterXFourTwo26_3_0: {
-            choices: [{
-				text: "Зробити відчайдушний випад",
-				nextpage: "ChapterXFourTwo26_3_1",
-			valid: character => (character.stats.fencing) && (character.stats.huntskills >= 30),
-				onselect: function () {
-					
-				}
-                }, {
-				text: "Зробити відчайдушний прийом",
-				nextpage: "ChapterXFourTwo26_3_2",
-				valid: character => (character.stats.martialarts) && (character.stats.huntskills >= 30),
-				onselect: function () {
-					
-				}
-				}, {
-				text: "Промовити відчайдушну молитву",
-				nextpage: "ChapterXFourTwo26_3_3",
-				valid: character => (character.stats.holymagic) && (character.stats.huntskills >= 30),
-				onselect: function () {
-					
-				}
-				}, {
-				text: "У вас немає ничого окрім відчаю",
-				nextpage: "ChapterXFourTwo26_3_4",
-				onselect: function () {
-					
-				}
-				}
-            ]
-		},
-		ChapterXFourTwo26_3_1: {
-			choices: [{
-				text: "До долі мисливців(Залізна рука)",
-				nextpage: "ChapterXFourTwo25_4",
-				onselect: function () {}
-			}]
-		},
-		ChapterXFourTwo26_3_2: {
-			choices: [{
-				text: "До долі мисливців(Залізна рука)",
-				nextpage: "ChapterXFourTwo25_4",
-				onselect: function () {}
-			}]
-		},
-		ChapterXFourTwo26_3_3: {
-			choices: [{
-				text: "До долі мисливців(Залізна рука)",
-				nextpage: "ChapterXFourTwo25_4",
-				onselect: function () {}
-			}]
-		},
-		ChapterXFourTwo26_3_4: {
-			choices: [{
-				text: "Продовжити",
-				nextpage: "The_End_100",
-				onselect: function () {}
-			}]
-		},
-		ChapterXFourTwo27: {
-            choices: [{
-				text: "Це ваш единий шанс",
-				nextpage: "ChapterXFourTwo27_1",
-				onselect: function () {
-					
-				}
-			}
-            ]
-		},
-		ChapterXFourTwo27_1: {
-			choices: [{
-				text: "Продовжити",
-				nextpage: "ChapterXFourTwo27_3_0",
-				onselect: function () {}
-			}]
-		},
-		ChapterXFourTwo27_3_0: {
-            choices: [{
-				text: "Зробити відчайдушний випад",
-				nextpage: "ChapterXFourTwo27_3_1",
-				valid: character => (character.stats.fencing) && (character.stats.huntskills >= 40),
-				onselect: function () {
-					
-				}
-                }, {
-				text: "Зробити відчайдушний прийом",
-				nextpage: "ChapterXFourTwo27_3_2",
-				valid: character => (character.stats.martialarts) && (character.stats.huntskills >= 40),
-				onselect: function () {
-					
-				}
-				}, {
-				text: "Промовити відчайдушну молитву",
-				nextpage: "ChapterXFourTwo27_3_3",
-				valid: character => (character.stats.holymagic) && (character.stats.huntskills >= 40),
-				onselect: function () {
-					
-				}
-				}, {
-				text: "У вас немає ничого окрім відчаю",
-				nextpage: "ChapterXFourTwo27_3_4",
-				onselect: function () {
-					
-				}
-				}
-            ]
-		},
-		ChapterXFourTwo27_3_1: {
-			choices: [{
-				text: "До долі мисливців(Залізна рука)",
-				nextpage: "ChapterXFourTwo25_4",
-				onselect: function () {}
-			}]
-		},
-		ChapterXFourTwo27_3_2: {
-			choices: [{
-				text: "До долі мисливців(Залізна рука)",
-				nextpage: "ChapterXFourTwo25_4",
-				onselect: function () {}
-			}]
-		},
-		ChapterXFourTwo27_3_3: {
-			choices: [{
-				text: "До долі мисливців(Залізна рука)",
-				nextpage: "ChapterXFourTwo25_4",
-				onselect: function () {}
-			}]
-		},
-		ChapterXFourTwo27_3_4: {
-			choices: [{
-				text: "Продовжити",
-				nextpage: "The_End_100",
-				onselect: function () {}
-			}]
-		},
-		ChapterXFourTwo25_4: {
-			choices: [{
-				text: "Продовжити",
 				nextpage: "The_End_100",
 				onselect: function () {}
 			}]
 		},
 		//______________________________________________________________________________________________________________________________
-		ChapterXFourUThree25: {
+		ChapterXFourUThree24: {
             choices: [{
 				text: "Продовжити",
-				nextpage: "ChapterXFourUThree25_1",
+				nextpage: "ChapterXFourUThree25",
 				onselect: function () {
-					
+					if (character.stats.huntresources < 0) {character.stats.increase(DECAY_POINTS)}
+					if (character.stats.huntskills < 0) {character.stats.increase(DECAY_POINTS)}
+					if (character.stats.nobilityapproval < 0) {character.stats.increase(DECAY_POINTS)}
 				}
 			}
             ]
 		},
-		ChapterXFourUThree25_1: {
+		ChapterXFourUThree25: {
             choices: [{
-				text: "До питання чаклунів(Терпимість)",
+				text: "Продовжити",
 				nextpage: "ChapterXFourUThree26",
-				valid: character => character.stats.magictolerance > 0,
 				onselect: function () {
-					if (character.stats.huntresources < 0) {character.stats.increase(DECAY_POINTS)}
-					if (character.stats.huntskills < 0) {character.stats.increase(DECAY_POINTS)}
-					if (character.stats.nobilityapproval < 0) {character.stats.increase(DECAY_POINTS)}
+					
 				}
-                }, {
-				text: "До питання чаклунів(Гоніння)",
-				nextpage: "ChapterXFourUThree27",
-				valid: character => character.stats.magictolerance < 0,
-				onselect: function () {
-					if (character.stats.huntresources < 0) {character.stats.increase(DECAY_POINTS)}
-					if (character.stats.huntskills < 0) {character.stats.increase(DECAY_POINTS)}
-					if (character.stats.nobilityapproval < 0) {character.stats.increase(DECAY_POINTS)}
-				}
-			}
+                }
             ]
 		},
 		ChapterXFourUThree26: {
             choices: [{
-				text: "До долі мисливців(Стражі закону)",
-				nextpage: "ChapterXFourUThree28",
-				valid: character => character.stats.decaypoints == 0,
-				onselect: function () {
-					
-				}
-                }, {
-				text: "До долі мисливців(Розпад)",
-				nextpage: "ChapterXFourUThree29",
-				valid: character => character.stats.decaypoints >= 1,
-				onselect: function () {
-					
-				}
-			}
-            ]
-		},
-		ChapterXFourUThree27: {
-            choices: [{
-				text: "До долі мисливців(Палачі)",
-				nextpage: "ChapterXFourUThree30",
-				onselect: function () {
-					
-				}
-			}
-            ]
-		},
-		ChapterXFourUThree28: {
-			choices: [{
 				text: "Продовжити",
 				nextpage: "The_End_100",
-				onselect: function () {}
-			}]
+				onselect: function () {
+					
+				}
+                }
+            ]
 		},
-		ChapterXFourUThree29: {
+		The_End_100: {
 			choices: [{
 				text: "Продовжити",
-				nextpage: "The_End_100",
-				onselect: function () {}
-			}]
-		},
-		ChapterXFourUThree30: {
-			choices: [{
-				text: "Продовжити",
+				valid: character => character.stats.decaypoints > 100,
 				nextpage: "The_End_100",
 				onselect: function () {}
 			}]
