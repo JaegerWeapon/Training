@@ -160,6 +160,35 @@ tr.visible {
   * {
   align-content: center;
   }
+  #welcome_container {
+	position: absolute;
+	/*display: flex;*/
+	height: 100%;
+	width: 100%;
+	border: 0px none;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	visibility: hidden;
+  }
+  #welcome_text { 
+	height: 90%;
+	width: 100%;
+	text-align: center;
+  }
+  #welcome_sign {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	margin: auto;
+	background-color: #f2eedf;
+	font-size: 25px;
+	border: 20px solid transparent;
+	border-image: url(css_border-image-3.png) 40 round round;
+	
+}
 }
 
 #images {
@@ -258,6 +287,8 @@ div#menu {
 #welcome_container {
 	position: absolute;
 	display: flex;
+	height: 100%;
+	width: 100%;	
 	border: 0px none;
 	top: 0;
 	bottom: 0;
@@ -269,15 +300,15 @@ div#menu {
 
 #welcome_sign {
 	position: relative;
-	height: 80%;
-	width: 80%;
+	height: 100%;
+	width: 100%;
 	margin: auto;
 	background-color: #f2eedf;
 	font-size: 25px;
-	padding-top: 50px;
+	/*padding-top: 50px;
 	padding-right: 80px;
 	padding-bottom: 50px;
-	padding-left: 80px;
+	padding-left: 80px;*/
 	border: 20px solid transparent;
 	border-image: url(css_border-image-3.png) 40 round round;
 	
@@ -296,6 +327,8 @@ div#menu {
 	margin: auto;
 	width: 60%;
 	text-align: center;
+	font-size: 35px;
+	
 }
 
 #welcome_container.visible {

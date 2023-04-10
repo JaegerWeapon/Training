@@ -251,7 +251,7 @@ var story = {
 						}
 				}
                 }, {
-				text: "Мудру босорку",
+				text: "Мудру віщунку",
 				nextpage: "backstory1_3",
 				onselect: function () {
 				character.stats.resetStats({intelligence: 1});
@@ -683,7 +683,6 @@ var story = {
 				text: "Ігнорувати",
 				nextpage: "ChapterOne8_2",
 				onselect: function () {
-					character.stats.increaseBy(NOBILITY_APPROVAL, 10);
 					character.stats.increase(SINS);	
 				}
                 }, {
@@ -931,13 +930,14 @@ var story = {
 				text: "Знайомствами зі шляхтою",
 				nextpage: "ChapterTwo12_1",
 				onselect: function () {
-					character.stats.increaseBy(NOBILITY_APPROVAL, 10);
+					character.stats.increaseBy(NOBILITY_APPROVAL, 20);
 				}
                 }, {
 				text: "Дбалим спостереженням",
 				nextpage: "ChapterTwo12_2",
 				onselect: function () {
-					character.stats.increaseBy(HUNT_SKILLS, 10);
+					character.stats.increaseBy(HUNT_RESOURCES, 10);
+					character.stats.increaseBy(NOBILITY_APPROVAL, 10);
 				}
                 }, {
 				text: "Агітацією за магію",
@@ -1082,11 +1082,10 @@ var story = {
 					character.stats.increase(SINS);
 				}
                 }, {
-				text: "Агресивно виявляти чаклунів",
+				text: "Росширяти штат та тренувальну програму",
 				nextpage: "ChapterUThree16_2",
 				onselect: function () {
 					character.stats.increaseBy(HUNT_SKILLS, 10);
-					character.stats.decreaseBy(MAGIC_TOLERANCE, 10);
 				}
                 }, {
 				text: "Заручитися підтримкою шляхти",
@@ -1287,6 +1286,7 @@ var story = {
 				text: "Погодитись",
 				nextpage: "ChapterUThree20_1",
 				onselect: function () {
+					character.stats.increaseBy(HUNT_RESOURCES, 10);
 					character.stats.increase(SINS);
 				}
                 }, {
@@ -1361,7 +1361,7 @@ var story = {
 				text: "Ви будете просити допомоги у шляхти",
 				nextpage: "ChapterUThree22_2",
 				onselect: function () {
-					character.stats.increase(SINS);
+					character.stats.decreaseBy(NOBILITY_APPROVAL, 10);
 				}
 			}
             ]
@@ -1829,21 +1829,21 @@ var story = {
             choices: [{
 				text: "Ви кидаєтесь на ворога з шаблею",
 				nextpage: "ChapterXFourTwo24_1",
-				valid: function () {return character.history.backstory4 == 0},
+				valid: function () {return (character.history.backstory4 == 0) && (character.stats.huntskills >= 30)},
 				onselect: function () {
 					
 				}
                 }, {
 				text: "Ви кидаєтесь на ворога з палицею",
 				nextpage: "ChapterXFourTwo24_2",
-				valid: function () {return character.history.backstory4 == 1},
+				valid: function () {return (character.history.backstory4 == 1) && (character.stats.huntskills >= 30)},
 				onselect: function () {
 					
 				}
 			}, {
 				text: "Ви сліпете ворога святим сяйвом",
 				nextpage: "ChapterXFourTwo24_3",
-				valid: function () {return character.history.backstory4 == 2},
+				valid: function () {return (character.history.backstory4 == 2) && (character.stats.huntskills >= 30)},
 				onselect: function () {
 					
 				}
